@@ -22,8 +22,7 @@ export class CreateComponent implements OnInit {
       telefono: ['', [Validators.required, Validators.minLength(6)]],
       correo: ['', [Validators.required, Validators.email]],
     });
-
-    
+   
   ngOnInit(): void {
   }
   

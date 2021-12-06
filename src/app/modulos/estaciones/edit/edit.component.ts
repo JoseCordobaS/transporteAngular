@@ -35,8 +35,8 @@ export class EditComponent implements OnInit {
   }
 
   buscarRegistro(id: string) {
-    console.log("SISI")
     this.estacionService.getWithId(id).subscribe((data: EstacionModelo) => {
+      console.log("ID...:" +this.fgValidacion.controls["id"])
       this.fgValidacion.controls["id"].setValue(id)
       this.fgValidacion.controls["nombre"].setValue(data.nombre);
       this.fgValidacion.controls["direccion"].setValue(data.direccion);

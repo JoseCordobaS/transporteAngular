@@ -36,7 +36,6 @@ export class EstacionesService {
   }
 
   update(estacion: EstacionModelo): Observable<EstacionModelo> {
-    console.log(estacion.id)
     return this.http.patch<EstacionModelo>(`${this.url}/estaciones/${estacion.id}`, {
       nombre: estacion.nombre,
       direccion: estacion.direccion,
