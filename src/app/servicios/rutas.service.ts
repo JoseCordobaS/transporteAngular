@@ -30,6 +30,10 @@ export class RutasService {
       origen: ruta.origen,
       destino: ruta.destino,
       tiempo_estimado: ruta.tiempo_estimado,
+    },{
+      headers: new HttpHeaders({
+        "Authorization": `Bearer ${this.token}`
+      })
     });
   }
 

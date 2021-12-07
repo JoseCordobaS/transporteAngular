@@ -2,13 +2,26 @@
     <h3 class="center-align">Registrar Ruta</h3>
     <form [formGroup]="fgValidacion" class="col s12" (ngSubmit)="store()">
       <div class="row">
-        <div class="input-field col s6">
+
+        <!-- <div class="input-field col s6">
           <input formControlName="origen" type="text" class="validate">
           <label for="origen">Estacion Origen</label>
         </div>
         <div class="input-field col s6">
           <input formControlName="destino" type="text" class="validate">
           <label for="destino">Estacion Destino</label>
+        </div> -->
+        <div class="input-field col s12">
+          <select class="browser-default" formControlName="origen">
+            <option value="" disabled selected>Seleccione la estación de origen</option>
+            <option *ngFor="let estaciones of listadoEstaciones" value="{{estaciones.nombre}}">{{estaciones.nombre}}</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <select class="browser-default" formControlName="destino">
+            <option value="" disabled selected>Seleccione la estación de destino</option>
+            <option *ngFor="let estaciones of listadoEstaciones" value="{{estaciones.nombre}}">{{estaciones.nombre}}</option>
+          </select>
         </div>
       </div>
       <div class="row">
@@ -17,7 +30,8 @@
           <label for="tiempo_estimado">Tiempo estimado</label>
         </div>
       </div>
-       
+
+             
       <div class="row center-align">
         <button [disabled]="!fgValidacion.valid" class="btn waves-effect waves-light" type="submit" name="action">Enviar
           <i class="material-icons right">send</i>
