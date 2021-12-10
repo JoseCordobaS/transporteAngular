@@ -4,13 +4,17 @@
     <form [formGroup]="fgValidacion" class="col s12" (ngSubmit)="edit()">
       <input formControlName="id" type="hidden" class="validate">
       <div class="row">
-        <div class="input-field col s6">
-          <input formControlName="origen" type="text" class="validate">
-          <label class="active" for="origen">Estación de origen</label>
+        <div class="input-field col s12">
+          <select class="browser-default" formControlName="origen">
+            <option value="" disabled selected>Seleccione la estación de origen</option>
+            <option *ngFor="let estaciones of listadoEstaciones" value="{{estaciones.nombre}}">{{estaciones.nombre}}</option>
+          </select>
         </div>
-        <div class="input-field col s6">
-          <input formControlName="destino" type="text" class="validate">
-          <label class="active" for="destino">Estación de destino</label>
+        <div class="input-field col s12">
+          <select class="browser-default" formControlName="destino">
+            <option value="" disabled selected>Seleccione la estación de destino</option>
+            <option *ngFor="let estaciones of listadoEstaciones" value="{{estaciones.nombre}}">{{estaciones.nombre}}</option>
+          </select>
         </div>
       </div>
       <div class="row">

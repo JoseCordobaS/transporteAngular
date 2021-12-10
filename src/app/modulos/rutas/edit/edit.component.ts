@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EstacionModelo } from 'src/app/modelos/estacion.model';
 import { RutaModelo } from 'src/app/modelos/ruta.model';
+import { EstacionesService } from 'src/app/servicios/estaciones.service';
 import { RutasService } from 'src/app/servicios/rutas.service';
 import Swal from 'sweetalert2';
 
@@ -15,7 +17,8 @@ export class EditComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private rutaService: RutasService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private estacionesService: EstacionesService) { }
 
   fgValidacion = this.fb.group({
     id: ['', [Validators.required]],
@@ -30,6 +33,16 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"]
     this.buscarRegistro(this.id);
+    this.getAllEstaciones();
+  }
+
+  listadoEstaciones: EstacionModelo[] = []
+
+  getAllEstaciones(){
+    this.estacionesService.getAll().subscribe((data: EstacionModelo[]) => {
+      this.listadoEstaciones = data
+      console.log(data)
+    })
   }
 
   buscarRegistro(id: string) {
